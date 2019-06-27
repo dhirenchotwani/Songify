@@ -23,7 +23,7 @@ export default class NowPlaying extends Component{
                 end = {[1,1]}
                 style = {styles.NowPlayingContainer}>
 
-                <View style = {[styles.progessBar,{width: responsiveWidth(this.state.progess*100)}]}/>
+                <View style = {[styles.progressBar,{width: responsiveWidth(this.state.progess*100)}]}/>
 
                 <View style= {styles.controlContainer}>
                     <View style = {styles.songContainer}>
