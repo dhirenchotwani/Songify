@@ -1,0 +1,5 @@
+Music Player Dependancies (react native)
+	1. react-native-responsive-dimensions
+	2. expo-linear-gradient
+	3. @expo/vector-icons
+
