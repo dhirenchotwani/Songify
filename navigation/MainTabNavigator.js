@@ -1,13 +1,16 @@
 import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import {MaterialIcons} from "@expo/vector-icons";
 
-import HomeScreen from '../screens/HomeScreen';
+import TabBarIcon from '../components/TabBarIcon';
+import SongsScreen from '../screens/SongsScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import {responsiveFontSize, responsiveHeight} from "react-native-responsive-dimensions";
+import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
+import {MaterialIcons} from "@expo/vector-icons";
+
 import Colors from "../constants/Colors";
+
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
@@ -15,15 +18,14 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: SongsScreen,
   },
   config
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-   <MaterialIcons name={'music-note'} size={responsiveFontSize(5)} color={Colors.accentColor}/>
+  tabBarIcon:({focused})=>(
+      <MaterialIcons name={'music-note'} size={responsiveFontSize(4)} color={Colors.accentColor}/>
   ),
 };
 
@@ -37,10 +39,9 @@ const LinksStack = createStackNavigator(
 );
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-      <MaterialIcons name={'search'} size={responsiveFontSize(5)} color={Colors.accentColor}/>
-  ),
+    tabBarIcon:({focused})=>(
+        <MaterialIcons name={'search'} size={responsiveFontSize(4)} color={Colors.accentColor}/>
+    ),
 };
 
 LinksStack.path = '';
@@ -53,10 +54,9 @@ const SettingsStack = createStackNavigator(
 );
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-      <MaterialIcons name={'person'} size={responsiveFontSize(5)} color={Colors.accentColor}/>
-  ),
+    tabBarIcon:({focused})=>(
+        <MaterialIcons name={'person'} size={responsiveFontSize(4)} color={Colors.accentColor}/>
+    ),
 };
 
 SettingsStack.path = '';
@@ -66,14 +66,13 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack,
 },{
- tabBarOptions:{
-     showLabel:false,
-     style:{
-         backgroundColor:Colors.primaryColor,
-         height:responsiveHeight(10),
-
-     },
- }
+    tabBarOptions:{
+      showLabel: false,
+      style:{
+          backgroundColor:Colors.primaryColor,
+          height: responsiveHeight(10)
+      },
+    },
 });
 
 tabNavigator.path = '';
