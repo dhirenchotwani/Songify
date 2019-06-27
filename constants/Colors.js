@@ -14,12 +14,12 @@ export default {
 
   //Our Colors
   primaryColor:'#19182F',
-  accentColor:'#',
-  placeholderColor:'#',
-  accentGradientStart:'#',
-  accentGradientEnd:'#',
-  PrimaryGradientStart:'#',
-  PrimaryGradientEnd:'#',
-  headingColor:'#',
-
+  accentColor:'#9458EA',
+  placeholderColor:'#989CC1',
+  accentGradientStart:'#8250AF',
+  accentGradientEnd:'#3A2496',
+  PrimaryGradientStart:'#1E2542',
+  PrimaryGradientEnd:'#16162C',
+  headingColor:'#FFF',
+  greyColor:'#CCCCCC'
 };

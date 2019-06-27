@@ -1,12 +1,13 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import {MaterialIcons} from "@expo/vector-icons";
 
-import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-
+import {responsiveFontSize, responsiveHeight} from "react-native-responsive-dimensions";
+import Colors from "../constants/Colors";
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
@@ -22,14 +23,7 @@ const HomeStack = createStackNavigator(
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
+   <MaterialIcons name={'music-note'} size={responsiveFontSize(5)} color={Colors.accentColor}/>
   ),
 };
 
@@ -45,7 +39,7 @@ const LinksStack = createStackNavigator(
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+      <MaterialIcons name={'search'} size={responsiveFontSize(5)} color={Colors.accentColor}/>
   ),
 };
 
@@ -61,7 +55,7 @@ const SettingsStack = createStackNavigator(
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+      <MaterialIcons name={'person'} size={responsiveFontSize(5)} color={Colors.accentColor}/>
   ),
 };
 
@@ -71,8 +65,18 @@ const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+},{
+ tabBarOptions:{
+     showLabel:false,
+     style:{
+         backgroundColor:Colors.primaryColor,
+         height:responsiveHeight(10),
+
+     },
+ }
 });
 
 tabNavigator.path = '';
 
 export default tabNavigator;
+
