@@ -10,10 +10,11 @@ import {
 } from 'react-native';
 
 import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
-import {MaterialIcons} from "@expo/vector-icons";
-import {LinearGradient} from "expo-linear-gradient";
+
+//Constants
 import Colors from "../constants/Colors";
 
+//Global Styles
 import * as GlobalStyles from "../styles";
 
 export default class SongItem extends Component{
@@ -23,7 +24,7 @@ export default class SongItem extends Component{
 
    render(){
         return(
-          <View style={styles.mainContainer}>
+          <TouchableOpacity style={styles.mainContainer} onPress={() => this.props.songClicked(this.props.song)}>
                 <View style={GlobalStyles.styles.songContainer}>
                     <Image
                         source={{uri:this.props.song.thumbnail}}
@@ -35,7 +36,7 @@ export default class SongItem extends Component{
                     </View>
                 </View>
               <Text style={styles.durationText}>{this.props.song.duration}</Text>
-          </View>
+          </TouchableOpacity>
         );
    }
 }

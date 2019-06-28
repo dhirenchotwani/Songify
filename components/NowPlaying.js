@@ -7,7 +7,8 @@ import {
     StyleSheet,
     Text,
     TouchableOpacity,
-    View
+    View,
+    TouchableWithoutFeedback
 } from 'react-native';
 
 import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
@@ -31,30 +32,52 @@ export default class NowPlaying extends Component {
         return (
             <LinearGradient colors={[Colors.accentGradientStart, Colors.accentGradientEnd]}
                             start={[0, 0]}
-                            end={[1, 1]}
-                            style={styles.nowPlayingContainer}>
+                            end={[1, 1]}>
 
-                {/*ProgressBar*/}
-                <View style={[styles.progressBar, {width: responsiveWidth((this.state.progress * 100))}]}/>
-                {/*end of progress bar*/}
+                <TouchableWithoutFeedback onPress= {this.nowPlayingClicked.bind(this)}>
+                    <View style={styles.nowPlayingContainer} >
+                        {/*ProgressBar*/}
+                        <View style={[styles.progressBar, {width: responsiveWidth((this.state.progress * 100))}]}/>
+                        {/*end of progress bar*/}
 
-                <View style={styles.controlContainer}>
-                    <View style={styles.songContainer}>
-                        <Image
-                            source={{uri: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/15/f1/bf/15f1bf30-54b7-e4a1-1a84-02cdc3b1fc2b/source/512x512bb.jpg"}}
-                            style={styles.albumArt}/>
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.songTitle}>Song</Text>
-                            <Text style={styles.albumText}>Album info</Text>
+                        <View style={styles.controlContainer}>
+                            <View style={styles.songContainer}>
+                                <Image
+                                    source={{uri: this.props.song.thumbnail}}
+                                    style={styles.albumArt}/>
+                                <View style={styles.infoContainer}>
+                                    <Text style={styles.songTitle}>{this.props.song.title}</Text>
+                                    <Text style={styles.albumText}>{this.props.song.album}-{this.props.song.artist}</Text>
+                                </View>
+                            </View>
+                            <TouchableOpacity onPress={()=> this.props.onToggle()}>
+                                {this.renderPlayButton()}
+                            </TouchableOpacity>
                         </View>
                     </View>
-                    <MaterialIcons name={'play-arrow'} color={Colors.headingColor} size={responsiveFontSize(6)}/>
-                </View>
-
+                </TouchableWithoutFeedback>
             </LinearGradient>
+
         );
 
 
+    }
+
+
+    nowPlayingClicked(){
+        console.log("Open Now Playing Page")
+    }
+
+    renderPlayButton(){
+        if(this.props.isPaused){
+            return(
+                <MaterialIcons name={'play-arrow'} color={Colors.headingColor} size={responsiveFontSize(6)}/>
+            );
+        }
+
+        return(
+            <MaterialIcons name={'pause'} color={Colors.headingColor} size={responsiveFontSize(6)}/>
+        );
     }
 }
 
@@ -99,7 +122,7 @@ const styles = StyleSheet.create({
     },
     albumText:{
         fontFamily:'fira-regular',
-        color: Colors.geryColor,
+        color: Colors.greyColor,
         fontSize: responsiveFontSize(1.7)
     }
 

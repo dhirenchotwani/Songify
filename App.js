@@ -1,14 +1,17 @@
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet } from 'react-native';
 import { Icons } from '@expo/vector-icons';
-
 import AppNavigator from './navigation/AppNavigator';
-import * as Font from "expo-font";
-import Colors from "./constants/Colors";
 import {responsiveHeight} from "react-native-responsive-dimensions";
 import {LinearGradient} from "expo-linear-gradient";
+
+//Colors
+import Colors from "./constants/Colors";
+
+//Font
+import * as Font from "expo-font";
 
 export default class App extends React.Component{
     constructor(props){

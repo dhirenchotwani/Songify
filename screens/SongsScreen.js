@@ -11,28 +11,40 @@ import {
 } from 'react-native';
 
 import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
-
-import NowPlaying from "../components/NowPlaying";
 import {LinearGradient} from "expo-linear-gradient";
-import Colors from "../constants/Colors";
-
-import {getAllSongs} from "../services/SongService";
+import {Audio} from "expo-av";
 import {FlatList} from "react-navigation";
+
+//Created Components
 import SongItem from "../components/SongItem";
-import RoundedButton from "../components/RoundedButton"
+import RoundedButton from "../components/RoundedButton";
+import NowPlaying from "../components/NowPlaying";
+
+//Icons
 import {MaterialIcons} from "@expo/vector-icons";
+
+//Services
+import {getAllSongs} from "../services/SongService";
+
+//Constants
+import Colors from "../constants/Colors";
 
 export default class SongsScreen extends Component{
     constructor(props){
       super(props);
+      const sound= new Audio.Sound();
       this.state={
-        songs:[]
+        songs:[],
+          isPaused:false,
+          sound:sound,
+          currentSong:undefined,
+          isSongLoading:false,
       };
     }
 
     async componentWillMount(){
       let songs = await getAllSongs();
-      console.log("Songs : "+JSON.stringify(songs));
+      //console.log("Songs : "+JSON.stringify(songs));
       this.setState({
         songs:songs
       });
@@ -59,13 +71,61 @@ export default class SongsScreen extends Component{
             <FlatList data={this.state.songs}
                       style={{flex:1}}
                       keyExtractor={(data)=>data.id+""}
-                      renderItem={({item})=> <SongItem song={item}/>}/>
+                      //Multiple songs hai ya renderSongs bana usko  bind kar iske sath ya yeh method use kar JSX wala!
+                      renderItem={({item})=> <SongItem song={item} songClicked={this.playSong.bind(this)}/>}/>
             </LinearGradient>
-            <NowPlaying/>
+              {typeof this.state.currentSong!=='undefined' ? <NowPlaying isPaused={this.state.isPaused}
+                                                                            song={this.state.currentSong}
+                                                                            onToggle={this.togglePause.bind(this)}/>
+                                                                        :null}
+
           </View>
       );
     }
+    async playSong(song){
+        console.log(typeof this.state.currentSong);
+        let songLoaded=(typeof this.state.currentSong) !=="undefined";
+        if(!this.state.isSongLoading &&
+            (!songLoaded || this.state.currentSong.id !== song.id)){
+            console.log("im here ");
+            this.setState({
+                isSongLoading:true
+            });
 
+            if(songLoaded){
+                await this.state.sound.unloadAsync();
+            }
+            console.log("Loading song");
+            await this.state.sound.loadAsync({uri:song.location}, {},false);
+            console.log("Playing song");
+            await this.state.sound.playAsync();
+            this.setState({
+                currentSong:song,
+                isSongLoading:false
+            });
+        }
+    }
+
+    async togglePause(){
+        console.log("TogglePause called");
+        if(this.state.currentSong){
+            console.log("Going to pause current song: " + this.state.currentSong);
+            let isPaused = !this.state.isPaused;
+            if(isPaused){
+                console.log("Pausing song");
+                await this.state.sound.pauseAsync();
+                console.log("Paused");
+            }
+            else{
+                console.log("Playing song");
+                await this.state.sound.playAsync();
+                console.log("Played");
+            }
+            this.setState({
+                isPaused: isPaused
+            });
+        }
+    }
 }
 
 SongsScreen.navigationOptions = {
