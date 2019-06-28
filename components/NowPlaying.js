@@ -15,6 +15,7 @@ import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-nativ
 import {MaterialIcons} from "@expo/vector-icons";
 import {LinearGradient} from "expo-linear-gradient";
 import Colors from "../constants/Colors";
+import * as GlobalStyles from "../styles";
 
 
 export default class NowPlaying extends Component {
@@ -34,39 +35,47 @@ export default class NowPlaying extends Component {
                             start={[0, 0]}
                             end={[1, 1]}>
 
-                <TouchableWithoutFeedback onPress= {this.nowPlayingClicked.bind(this)}>
-                    <View style={styles.nowPlayingContainer} >
-                        {/*ProgressBar*/}
+
+                {/*ProgressBar*/}
+                <TouchableWithoutFeedback>
+                    <View style={styles.nowPlayingContainer}>
                         <View style={[styles.progressBar, {width: responsiveWidth((this.state.progress * 100))}]}/>
                         {/*end of progress bar*/}
 
                         <View style={styles.controlContainer}>
-                            <View style={styles.songContainer}>
+                            <View style={GlobalStyles.styles.songContainer}>
                                 <Image
                                     source={{uri: this.props.song.thumbnail}}
-                                    style={styles.albumArt}/>
-                                <View style={styles.infoContainer}>
-                                    <Text style={styles.songTitle}>{this.props.song.title}</Text>
-                                    <Text style={styles.albumText}>{this.props.song.album}-{this.props.song.artist}</Text>
+                                    style={GlobalStyles.styles.albumArt}/>
+                                <View style={GlobalStyles.styles.infoContainer}>
+                                    <Text style={[GlobalStyles.styles.songTitle, {color: Colors.headingColor}]}>{this.props.song.title}</Text>
+                                    <Text style={GlobalStyles.styles.albumText}>{this.props.song.album} - {this.props.song.artist}</Text>
                                 </View>
                             </View>
-                            <TouchableOpacity onPress={()=> this.props.onToggle()}>
+                            {/*<MaterialIcons name={'play-arrow'} color={Colors.headingColor} size={responsiveFontSize(6)}/>*/}
+                            <TouchableOpacity onPress={()=>this.props.onToggle()}>
                                 {this.renderPlayButton()}
                             </TouchableOpacity>
                         </View>
+
                     </View>
                 </TouchableWithoutFeedback>
-            </LinearGradient>
 
+
+
+
+            </LinearGradient>
         );
 
 
     }
 
 
+
     nowPlayingClicked(){
-        console.log("Open Now Playing Page")
+        console.log("Open Now Playing Page");
     }
+
 
     renderPlayButton(){
         if(this.props.isPaused){
@@ -74,12 +83,13 @@ export default class NowPlaying extends Component {
                 <MaterialIcons name={'play-arrow'} color={Colors.headingColor} size={responsiveFontSize(6)}/>
             );
         }
-
-        return(
+        return (
             <MaterialIcons name={'pause'} color={Colors.headingColor} size={responsiveFontSize(6)}/>
         );
     }
 }
+
+
 
 
 
@@ -122,7 +132,7 @@ const styles = StyleSheet.create({
     },
     albumText:{
         fontFamily:'fira-regular',
-        color: Colors.greyColor,
+        color: Colors.geryColor,
         fontSize: responsiveFontSize(1.7)
     }
 
