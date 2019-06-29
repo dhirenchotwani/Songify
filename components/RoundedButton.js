@@ -9,8 +9,6 @@ import {
 import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
 
 import {LinearGradient} from "expo-linear-gradient";
-
-//Constants
 import Colors from "../constants/Colors";
 
 

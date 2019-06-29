@@ -21,9 +21,9 @@ export default class SongItem extends Component{
         super(props);
     }
 
-    render(){
+   render(){
         return(
-            <TouchableOpacity style={styles.mainContainer} onPress={()=>this.props.songClicked(this.props.song)}>
+          <TouchableOpacity style={styles.mainContainer} onPress={()=>this.props.songClicked(this.props.song)}>
                 <View style={GlobalStyles.styles.songContainer}>
                     <Image
                         source={{uri:this.props.song.thumbnail}}
@@ -31,14 +31,14 @@ export default class SongItem extends Component{
                     />
                     <View style={GlobalStyles.styles.infoContainer}>
                         <Text style={(this.props.isActive)?[GlobalStyles.styles.songTitle,{color: Colors.accentColor}]
-                            : [GlobalStyles.styles.songTitle, {color: Colors.headingColor}]}>{this.props.song.title}</Text>
+                                                          : [GlobalStyles.styles.songTitle, {color: Colors.headingColor}]}>{this.props.song.title}</Text>
                         <Text style={GlobalStyles.styles.albumText}>{this.props.song.album}</Text>
                     </View>
                 </View>
-                <Text style={styles.durationText}>{this.props.song.duration}</Text>
-            </TouchableOpacity>
+              <Text style={styles.durationText}>{this.props.song.duration}</Text>
+          </TouchableOpacity>
         );
-    }
+   }
 }
 
 

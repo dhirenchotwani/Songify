@@ -16,18 +16,14 @@ import {MaterialIcons} from "@expo/vector-icons";
 import {LinearGradient} from "expo-linear-gradient";
 import Colors from "../constants/Colors";
 import * as GlobalStyles from "../styles";
+import SearchScreen from "../screens/SearchScreen";
 
 
 export default class NowPlaying extends Component {
     constructor(props) {
-        super(props)
-        {
-            super(props);
-            this.state = {
-                progress: 0.3
-            };
-        }
+        super(props);
     }
+
 
     render() {
         return (
@@ -37,9 +33,9 @@ export default class NowPlaying extends Component {
 
 
                 {/*ProgressBar*/}
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={this.nowPlayingClicked.bind(this)} >
                     <View style={styles.nowPlayingContainer}>
-                        <View style={[styles.progressBar, {width: responsiveWidth((this.state.progress * 100))}]}/>
+                        <View style={[styles.progressBar, {width: responsiveWidth((this.props.currentPosition))}]}/>
                         {/*end of progress bar*/}
 
                         <View style={styles.controlContainer}>
@@ -73,7 +69,7 @@ export default class NowPlaying extends Component {
 
 
     nowPlayingClicked(){
-        console.log("Open Now Playing Page");
+        this.props.navigation.navigate("NowPlaying");
     }
 
 
@@ -88,7 +84,6 @@ export default class NowPlaying extends Component {
         );
     }
 }
-
 
 
 

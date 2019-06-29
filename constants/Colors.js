@@ -12,7 +12,9 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
 
-  //Our Colors
+
+
+  //local colors
   primaryColor:'#19182F',
   accentColor:'#9458EA',
   placeholderColor:'#989CC1',
@@ -21,5 +23,8 @@ export default {
   PrimaryGradientStart:'#1E2542',
   PrimaryGradientEnd:'#16162C',
   headingColor:'#FFF',
-  greyColor:'#CCCCCC'
+  geryColor: '#CCCCCC',
+    blueColor: '#363b66',
+    lightAccentColor: '#8567CB'
+
 };
