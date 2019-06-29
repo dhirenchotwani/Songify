@@ -76,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/DependenciesUsed.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+              <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -177,6 +177,7 @@
         <option value="$PROJECT_DIR$/components/SongItem.js" />
         <option value="$PROJECT_DIR$/screens/SongsScreen.js" />
         <option value="$PROJECT_DIR$/navigation/MainTabNavigator.js" />
+        <option value="$PROJECT_DIR$/DependenciesUsed.txt" />
       </list>
     </option>
   </component>
@@ -278,15 +279,16 @@
       <workItem from="1561609216225" duration="38082000" />
       <workItem from="1561753025857" duration="591000" />
       <workItem from="1561754892694" duration="127000" />
-      <workItem from="1561781805894" duration="4219000" />
+      <workItem from="1561781805894" duration="4526000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43019000" />
+    <option name="totallyTimeSpent" value="43326000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -484,7 +486,7 @@
     <entry file="file://$PROJECT_DIR$/DependenciesUsed.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
         </state>
       </provider>
     </entry>
